@@ -21,10 +21,18 @@ export class CustomerComponent implements OnInit{
 
     populateTestData(): void{
         // to supply all the values of the ReactiveForm
+        /*
         this.customerForm.setValue({
             firstName: 'Jack',
             lastName: 'Jarkness',
             email: 'jack@torchwood.com',
+            sendCatalog: false
+        });
+        */
+        // To assign values.
+        this.customerForm.patchValue({
+            firstName: 'Jack',
+            lastName: 'Jarkness',
             sendCatalog: false
         });
     }
