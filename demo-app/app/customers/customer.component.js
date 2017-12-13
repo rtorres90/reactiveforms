@@ -11,6 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var customer_1 = require('./customer');
+function emailMatcher(c) {
+    var emailControl = c.get('email');
+    var confirmControl = c.get('confirmEmail');
+    console.log(emailControl.value);
+    console.log(confirmControl.value);
+    if (emailControl.pristine || confirmControl.pristine) {
+        return null;
+    }
+    if (emailControl.value === confirmControl.value) {
+        return { 'match': false };
+    }
+    return { 'match': true };
+}
 function ratingRange(min, max) {
     return function (c) {
         if (c.value != undefined && (isNaN(c.value) || c.value < min || c.value > max)) {
@@ -32,7 +45,7 @@ var CustomerComponent = (function () {
             emailGroup: this.fb.group({
                 email: ['', [forms_1.Validators.required, forms_1.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]],
                 confirmEmail: ['', [forms_1.Validators.required]],
-            }),
+            }, { validator: emailMatcher }),
             phone: '',
             notification: 'email',
             rating: ['', ratingRange(1, 5)],
