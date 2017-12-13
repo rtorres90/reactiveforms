@@ -19,9 +19,9 @@ var CustomerComponent = (function () {
     ;
     CustomerComponent.prototype.ngOnInit = function () {
         this.customerForm = this.fb.group({
-            firstName: '',
-            lastName: '',
-            email: '',
+            firstName: ['', [forms_1.Validators.required, forms_1.Validators.minLength(3)]],
+            lastName: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(50)]],
+            email: ['', [forms_1.Validators.required, forms_1.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]],
             sendCatalog: true,
         });
         /*
