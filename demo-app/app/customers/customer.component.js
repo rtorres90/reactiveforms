@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var customer_1 = require('./customer');
+require('rxjs/add/operator/debounceTime');
 function emailMatcher(c) {
     var emailControl = c.get('email');
     var confirmControl = c.get('confirmEmail');
@@ -58,7 +59,7 @@ var CustomerComponent = (function () {
         });
         this.customerForm.get('notification').valueChanges.subscribe(function (value) { return _this.setNotification(value); });
         var emailControl = this.customerForm.get('emailGroup.email');
-        emailControl.valueChanges.subscribe(function (value) { return _this.setMessage(emailControl); });
+        emailControl.valueChanges.debounceTime(1000).subscribe(function (value) { return _this.setMessage(emailControl); });
         /*
         this.customerForm = new FormGroup({
             firstName: new FormControl(),

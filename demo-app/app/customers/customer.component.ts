@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn} from '@angular/forms'
 
 import {Customer} from './customer';
+import 'rxjs/add/operator/debounceTime';
 
 function emailMatcher(c: AbstractControl) {
     let emailControl = c.get('email');
@@ -58,7 +59,7 @@ export class CustomerComponent implements OnInit {
         });
         this.customerForm.get('notification').valueChanges.subscribe(value => this.setNotification(value));
         const emailControl = this.customerForm.get('emailGroup.email');
-        emailControl.valueChanges.subscribe(value => this.setMessage(emailControl));
+        emailControl.valueChanges.debounceTime(1000).subscribe(value => this.setMessage(emailControl));
         /*
         this.customerForm = new FormGroup({
             firstName: new FormControl(),
