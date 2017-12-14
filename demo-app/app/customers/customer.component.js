@@ -36,9 +36,14 @@ var CustomerComponent = (function () {
     function CustomerComponent(fb) {
         this.fb = fb;
         this.customer = new customer_1.Customer();
+        this.validationMessages = {
+            required: 'Please enter your email address.',
+            pattern: 'Please enter a valid email address.'
+        };
     }
     ;
     CustomerComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.customerForm = this.fb.group({
             firstName: ['', [forms_1.Validators.required, forms_1.Validators.minLength(3)]],
             lastName: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(50)]],
@@ -51,6 +56,9 @@ var CustomerComponent = (function () {
             rating: ['', ratingRange(1, 5)],
             sendCatalog: true,
         });
+        this.customerForm.get('notification').valueChanges.subscribe(function (value) { return _this.setNotification(value); });
+        var emailControl = this.customerForm.get('emailGroup.email');
+        emailControl.valueChanges.subscribe(function (value) { return _this.setMessage(emailControl); });
         /*
         this.customerForm = new FormGroup({
             firstName: new FormControl(),
@@ -78,6 +86,15 @@ var CustomerComponent = (function () {
         });
     };
     CustomerComponent.prototype.save = function () {
+    };
+    CustomerComponent.prototype.setMessage = function (c) {
+        var _this = this;
+        this.emailMessage = '';
+        if ((c.touched || c.dirty) && c.errors) {
+            this.emailMessage = Object.keys(c.errors).map(function (key) {
+                return _this.validationMessages[key];
+            }).join(' ');
+        }
     };
     CustomerComponent.prototype.setNotification = function (notifyVia) {
         var phoneControl = this.customerForm.get('phone');
