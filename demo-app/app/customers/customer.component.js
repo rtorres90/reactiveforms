@@ -42,6 +42,13 @@ var CustomerComponent = (function () {
             pattern: 'Please enter a valid email address.'
         };
     }
+    Object.defineProperty(CustomerComponent.prototype, "addresses", {
+        get: function () {
+            return this.customerForm.get('addresses');
+        },
+        enumerable: true,
+        configurable: true
+    });
     ;
     CustomerComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -56,6 +63,7 @@ var CustomerComponent = (function () {
             notification: 'email',
             rating: ['', ratingRange(1, 5)],
             sendCatalog: true,
+            addresses: this.fb.array([this.buidAddress()])
         });
         this.customerForm.get('notification').valueChanges.subscribe(function (value) { return _this.setNotification(value); });
         var emailControl = this.customerForm.get('emailGroup.email');
@@ -68,6 +76,19 @@ var CustomerComponent = (function () {
             sendCatalog: new FormControl(true),
         });
         */
+    };
+    CustomerComponent.prototype.addAddress = function () {
+        this.addresses.push(this.buidAddress());
+    };
+    CustomerComponent.prototype.buidAddress = function () {
+        return this.fb.group({
+            addressType: 'home',
+            street1: '',
+            street2: '',
+            city: '',
+            state: '',
+            zip: ''
+        });
     };
     CustomerComponent.prototype.populateTestData = function () {
         // to supply all the values of the ReactiveForm
