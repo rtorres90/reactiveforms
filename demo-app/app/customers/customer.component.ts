@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray} from '@angular/forms'
+import {FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray} from '@angular/forms';
 
 import {Customer} from './customer';
 import 'rxjs/add/operator/debounceTime';
@@ -24,7 +24,7 @@ function ratingRange(min: number, max: number): ValidatorFn {
             return {'range': true};
         }
         return null;
-    }
+    };
 }
 
 @Component({
@@ -122,7 +122,7 @@ export class CustomerComponent implements OnInit {
     setNotification(notifyVia: string): void {
         const phoneControl = this.customerForm.get('phone');
         if (notifyVia === 'text') {
-            phoneControl.setValidators(Validators.required)
+            phoneControl.setValidators(Validators.required);
         } else {
             phoneControl.clearValidators();
         }
