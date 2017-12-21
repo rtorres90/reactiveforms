@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-// Imports for loading & configuring the in-memory web api
+// Imports for loading & configuring the in-memory web api!
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ProductData }  from './product-data';
 

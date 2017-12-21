@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
-// Imports for loading & configuring the in-memory web api
+// Imports for loading & configuring the in-memory web api!
 var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
 var product_data_1 = require('./product-data');
 var product_list_component_1 = require('./product-list.component');

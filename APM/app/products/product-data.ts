@@ -5,6 +5,7 @@ import { IProduct } from './product';
 export class ProductData implements InMemoryDbService {
 
     createDb() {
+        // Reminder: The id is required for in-memory-web-api.
         let products: IProduct[] = [
             {
                 'id': 1,

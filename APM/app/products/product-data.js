@@ -3,6 +3,7 @@ var ProductData = (function () {
     function ProductData() {
     }
     ProductData.prototype.createDb = function () {
+        // Reminder: The id is required for in-memory-web-api.
         var products = [
             {
                 'id': 1,
