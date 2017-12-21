@@ -8,14 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var Observable_1 = require('rxjs/Observable');
-require('rxjs/add/operator/do');
-require('rxjs/add/operator/catch');
-require('rxjs/add/observable/throw');
-require('rxjs/add/operator/map');
-require('rxjs/add/observable/of');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/operator/do");
+require("rxjs/add/operator/catch");
+require("rxjs/add/observable/throw");
+require("rxjs/add/operator/map");
+require("rxjs/add/observable/of");
 var ProductService = (function () {
     function ProductService(http) {
         this.http = http;
@@ -28,13 +28,10 @@ var ProductService = (function () {
             .catch(this.handleError);
     };
     ProductService.prototype.getProduct = function (id) {
-        var _this = this;
         if (id === 0) {
-            return Observable_1.Observable.create(function (observer) {
-                observer.next(_this.initializeProduct());
-                observer.complete();
-            });
+            return Observable_1.Observable.of(this.initializeProduct());
         }
+        ;
         var url = this.baseUrl + "/" + id;
         return this.http.get(url)
             .map(this.extractData)
@@ -95,11 +92,11 @@ var ProductService = (function () {
             imageUrl: null
         };
     };
-    ProductService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], ProductService);
     return ProductService;
 }());
+ProductService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], ProductService);
 exports.ProductService = ProductService;
 //# sourceMappingURL=product.service.js.map

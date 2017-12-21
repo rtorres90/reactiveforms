@@ -1,21 +1,20 @@
-import {Injectable} from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 
-import {IProduct} from './product';
+import { IProduct } from './product';
 
 @Injectable()
 export class ProductService {
     private baseUrl = 'api/products';
 
-    constructor(private http: Http) {
-    }
+    constructor(private http: Http) { }
 
     getProducts(): Observable<IProduct[]> {
         return this.http.get(this.baseUrl)
@@ -26,11 +25,12 @@ export class ProductService {
 
     getProduct(id: number): Observable<IProduct> {
         if (id === 0) {
-            return Observable.create((observer: any) => {
-                observer.next(this.initializeProduct());
-                observer.complete();
-            });
-        }
+        return Observable.of(this.initializeProduct());
+        // return Observable.create((observer: any) => {
+        //     observer.next(this.initializeProduct());
+        //     observer.complete();
+        // });
+        };
         const url = `${this.baseUrl}/${id}`;
         return this.http.get(url)
             .map(this.extractData)
@@ -39,8 +39,8 @@ export class ProductService {
     }
 
     deleteProduct(id: number): Observable<Response> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
 
         const url = `${this.baseUrl}/${id}`;
         return this.http.delete(url, options)
@@ -49,8 +49,8 @@ export class ProductService {
     }
 
     saveProduct(product: IProduct): Observable<IProduct> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
 
         if (product.id === 0) {
             return this.createProduct(product, options);
