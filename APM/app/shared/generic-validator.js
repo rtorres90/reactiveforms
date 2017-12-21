@@ -16,6 +16,7 @@ var GenericValidator = (function () {
     function GenericValidator(validationMessages) {
         this.validationMessages = validationMessages;
     }
+
     // Processes each control within a FormGroup
     // And returns a set of validation messages to display
     // Structure
@@ -24,7 +25,7 @@ var GenericValidator = (function () {
     GenericValidator.prototype.processMessages = function (container) {
         var _this = this;
         var messages = {};
-        var _loop_1 = function(controlKey) {
+        var _loop_1 = function (controlKey) {
             if (container.controls.hasOwnProperty(controlKey)) {
                 var c = container.controls[controlKey];
                 // If it is a FormGroup, process its child controls.

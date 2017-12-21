@@ -1,6 +1,7 @@
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
@@ -21,10 +22,13 @@ var ProductService = (function () {
         this.http = http;
         this.baseUrl = 'api/products';
     }
+
     ProductService.prototype.getProducts = function () {
         return this.http.get(this.baseUrl)
             .map(this.extractData)
-            .do(function (data) { return console.log('getProducts: ' + JSON.stringify(data)); })
+            .do(function (data) {
+                return console.log('getProducts: ' + JSON.stringify(data));
+            })
             .catch(this.handleError);
     };
     ProductService.prototype.getProduct = function (id) {
@@ -38,20 +42,24 @@ var ProductService = (function () {
         var url = this.baseUrl + "/" + id;
         return this.http.get(url)
             .map(this.extractData)
-            .do(function (data) { return console.log('getProduct: ' + JSON.stringify(data)); })
+            .do(function (data) {
+                return console.log('getProduct: ' + JSON.stringify(data));
+            })
             .catch(this.handleError);
     };
     ProductService.prototype.deleteProduct = function (id) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
+        var headers = new http_1.Headers({'Content-Type': 'application/json'});
+        var options = new http_1.RequestOptions({headers: headers});
         var url = this.baseUrl + "/" + id;
         return this.http.delete(url, options)
-            .do(function (data) { return console.log('deleteProduct: ' + JSON.stringify(data)); })
+            .do(function (data) {
+                return console.log('deleteProduct: ' + JSON.stringify(data));
+            })
             .catch(this.handleError);
     };
     ProductService.prototype.saveProduct = function (product) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
+        var headers = new http_1.Headers({'Content-Type': 'application/json'});
+        var options = new http_1.RequestOptions({headers: headers});
         if (product.id === 0) {
             return this.createProduct(product, options);
         }
@@ -61,14 +69,20 @@ var ProductService = (function () {
         product.id = undefined;
         return this.http.post(this.baseUrl, product, options)
             .map(this.extractData)
-            .do(function (data) { return console.log('createProduct: ' + JSON.stringify(data)); })
+            .do(function (data) {
+                return console.log('createProduct: ' + JSON.stringify(data));
+            })
             .catch(this.handleError);
     };
     ProductService.prototype.updateProduct = function (product, options) {
         var url = this.baseUrl + "/" + product.id;
         return this.http.put(url, product, options)
-            .map(function () { return product; })
-            .do(function (data) { return console.log('updateProduct: ' + JSON.stringify(data)); })
+            .map(function () {
+                return product;
+            })
+            .do(function (data) {
+                return console.log('updateProduct: ' + JSON.stringify(data));
+            })
             .catch(this.handleError);
     };
     ProductService.prototype.extractData = function (response) {
@@ -96,7 +110,7 @@ var ProductService = (function () {
         };
     };
     ProductService = __decorate([
-        core_1.Injectable(), 
+        core_1.Injectable(),
         __metadata('design:paramtypes', [http_1.Http])
     ], ProductService);
     return ProductService;

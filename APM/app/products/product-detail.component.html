@@ -30,7 +30,7 @@
                     <div class="col-md-3">5 Star Rating:</div>
                     <div class="col-md-6">
                         <ai-star [rating]="product.starRating"
-                                (ratingClicked)="onRatingClicked($event)">
+                                 (ratingClicked)="onRatingClicked($event)">
                         </ai-star>
                     </div>
                 </div>
@@ -41,9 +41,9 @@
             </div>
 
             <div class="col-md-6" *ngIf="product.imageUrl">
-                <img class="center-block img-responsive" 
-                     [style.width.px]="200" 
-                     [style.margin.px]="2" 
+                <img class="center-block img-responsive"
+                     [style.width.px]="200"
+                     [style.margin.px]="2"
                      [src]="product.imageUrl"
                      [title]="product.productName">
             </div>
@@ -55,7 +55,7 @@
         <a class="btn btn-default" (click)="onBack()" style="width:80px">
             <i class="glyphicon glyphicon-chevron-left"></i> Back
         </a>
-        <a class="btn btn-primary" style="width:80px;margin-left:10px" 
+        <a class="btn btn-primary" style="width:80px;margin-left:10px"
            [routerLink]="['/productEdit', product.id]">
             Edit
         </a>

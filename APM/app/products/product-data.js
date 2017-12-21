@@ -2,6 +2,7 @@
 var ProductData = (function () {
     function ProductData() {
     }
+
     ProductData.prototype.createDb = function () {
         // Reminder: The id is required for in-memory-web-api.
         var products = [
@@ -58,7 +59,7 @@ var ProductData = (function () {
                 'imageUrl': 'http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png'
             }
         ];
-        return { products: products };
+        return {products: products};
     };
     return ProductData;
 }());

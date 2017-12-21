@@ -1,24 +1,24 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewChildren, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
-import { ActivatedRoute, Router  } from '@angular/router';
+import {Component, OnInit, AfterViewInit, OnDestroy, ViewChildren, ElementRef} from '@angular/core';
+import {FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/merge';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
 
-import { IProduct } from './product';
-import { ProductService } from './product.service';
+import {IProduct} from './product';
+import {ProductService} from './product.service';
 
-import { NumberValidators } from '../shared/number.validator';
-import { GenericValidator } from '../shared/generic-validator';
+import {NumberValidators} from '../shared/number.validator';
+import {GenericValidator} from '../shared/generic-validator';
 
 @Component({
     templateUrl: 'app/products/product-edit.component.html'
 })
 export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
-    @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+    @ViewChildren(FormControlName, {read: ElementRef}) formInputElements: ElementRef[];
 
     pageTitle: string = 'Product Edit';
     errorMessage: string;
@@ -65,8 +65,8 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
     ngOnInit(): void {
         this.productForm = this.fb.group({
             productName: ['', [Validators.required,
-                               Validators.minLength(3),
-                               Validators.maxLength(50)]],
+                Validators.minLength(3),
+                Validators.maxLength(50)]],
             productCode: ['', Validators.required],
             starRating: ['', NumberValidators.range(1, 5)],
             tags: this.fb.array([]),
@@ -135,7 +135,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.product.id === 0) {
             // Don't delete, it was never saved.
             this.onSaveComplete();
-       } else {
+        } else {
             if (confirm(`Really delete the product: ${this.product.productName}?`)) {
                 this.productService.deleteProduct(this.product.id)
                     .subscribe(

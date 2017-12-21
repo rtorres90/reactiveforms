@@ -1,7 +1,7 @@
-import { Component, OnInit }  from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { IProduct } from './product';
-import { ProductService } from './product.service';
+import {IProduct} from './product';
+import {ProductService} from './product.service';
 
 @Component({
     templateUrl: 'app/products/product-list.component.html',
@@ -27,8 +27,8 @@ export class ProductListComponent implements OnInit {
 
     ngOnInit(): void {
         this.productService.getProducts()
-                .subscribe(products => this.products = products,
-                           error => this.errorMessage = <any>error);
+            .subscribe(products => this.products = products,
+                error => this.errorMessage = <any>error);
     }
 
     onRatingClicked(message: string): void {

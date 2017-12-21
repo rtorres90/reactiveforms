@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
 
-import { Subscription }       from 'rxjs/Subscription';
+import {Subscription} from 'rxjs/Subscription';
 
-import { IProduct } from './product';
-import { ProductService } from './product.service';
+import {IProduct} from './product';
+import {ProductService} from './product.service';
 
 @Component({
     templateUrl: 'app/products/product-detail.component.html'
@@ -25,7 +25,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
             params => {
                 let id = +params['id'];
                 this.getProduct(id);
-        });
+            });
     }
 
     ngOnDestroy() {

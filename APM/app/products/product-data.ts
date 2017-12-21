@@ -1,6 +1,6 @@
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+import {InMemoryDbService} from 'angular-in-memory-web-api';
 
-import { IProduct } from './product';
+import {IProduct} from './product';
 
 export class ProductData implements InMemoryDbService {
 
@@ -60,6 +60,6 @@ export class ProductData implements InMemoryDbService {
                 'imageUrl': 'http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png'
             }
         ];
-        return { products };
+        return {products};
     }
 }

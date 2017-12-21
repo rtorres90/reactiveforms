@@ -1,5 +1,7 @@
-import { Component, OnChanges, Input,
-         Output, EventEmitter } from '@angular/core';
+import {
+    Component, OnChanges, Input,
+    Output, EventEmitter
+} from '@angular/core';
 
 @Component({
     selector: 'ai-star',

@@ -1,6 +1,7 @@
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
@@ -46,6 +47,7 @@ var ProductEditComponent = (function () {
         // passing in this form's set of validation messages.
         this.genericValidator = new generic_validator_1.GenericValidator(this.validationMessages);
     }
+
     Object.defineProperty(ProductEditComponent.prototype, "tags", {
         get: function () {
             return this.productForm.get('tags');
@@ -57,8 +59,8 @@ var ProductEditComponent = (function () {
         var _this = this;
         this.productForm = this.fb.group({
             productName: ['', [forms_1.Validators.required,
-                    forms_1.Validators.minLength(3),
-                    forms_1.Validators.maxLength(50)]],
+                forms_1.Validators.minLength(3),
+                forms_1.Validators.maxLength(50)]],
             productCode: ['', forms_1.Validators.required],
             starRating: ['', number_validator_1.NumberValidators.range(1, 5)],
             tags: this.fb.array([]),
@@ -77,7 +79,9 @@ var ProductEditComponent = (function () {
         var _this = this;
         // Watch for the blur event from any input element on the form.
         var controlBlurs = this.formInputElements
-            .map(function (formControl) { return Observable_1.Observable.fromEvent(formControl.nativeElement, 'blur'); });
+            .map(function (formControl) {
+                return Observable_1.Observable.fromEvent(formControl.nativeElement, 'blur');
+            });
         // Merge the blur event observable with the valueChanges observable
         Observable_1.Observable.merge.apply(Observable_1.Observable, [this.productForm.valueChanges].concat(controlBlurs)).debounceTime(800).subscribe(function (value) {
             _this.displayMessage = _this.genericValidator.processMessages(_this.productForm);
@@ -89,7 +93,11 @@ var ProductEditComponent = (function () {
     ProductEditComponent.prototype.getProduct = function (id) {
         var _this = this;
         this.productService.getProduct(id)
-            .subscribe(function (product) { return _this.onProductRetrieved(product); }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (product) {
+                return _this.onProductRetrieved(product);
+            }, function (error) {
+                return _this.errorMessage = error;
+            });
     };
     ProductEditComponent.prototype.onProductRetrieved = function (product) {
         if (this.productForm) {
@@ -120,7 +128,11 @@ var ProductEditComponent = (function () {
         else {
             if (confirm("Really delete the product: " + this.product.productName + "?")) {
                 this.productService.deleteProduct(this.product.id)
-                    .subscribe(function () { return _this.onSaveComplete(); }, function (error) { return _this.errorMessage = error; });
+                    .subscribe(function () {
+                        return _this.onSaveComplete();
+                    }, function (error) {
+                        return _this.errorMessage = error;
+                    });
             }
         }
     };
@@ -130,7 +142,11 @@ var ProductEditComponent = (function () {
             // Copy the form values over the product object values
             var p = Object.assign({}, this.product, this.productForm.value);
             this.productService.saveProduct(p)
-                .subscribe(function () { return _this.onSaveComplete(); }, function (error) { return _this.errorMessage = error; });
+                .subscribe(function () {
+                    return _this.onSaveComplete();
+                }, function (error) {
+                    return _this.errorMessage = error;
+                });
         }
         else if (!this.productForm.dirty) {
             this.onSaveComplete();
@@ -142,13 +158,13 @@ var ProductEditComponent = (function () {
         this.router.navigate(['/products']);
     };
     __decorate([
-        core_1.ViewChildren(forms_1.FormControlName, { read: core_1.ElementRef }), 
+        core_1.ViewChildren(forms_1.FormControlName, {read: core_1.ElementRef}),
         __metadata('design:type', Array)
     ], ProductEditComponent.prototype, "formInputElements", void 0);
     ProductEditComponent = __decorate([
         core_1.Component({
             templateUrl: 'app/products/product-edit.component.html'
-        }), 
+        }),
         __metadata('design:paramtypes', [forms_1.FormBuilder, router_1.ActivatedRoute, router_1.Router, product_service_1.ProductService])
     ], ProductEditComponent);
     return ProductEditComponent;

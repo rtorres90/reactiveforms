@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, CanDeactivate } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, CanDeactivate} from '@angular/router';
 
-import { ProductEditComponent } from './product-edit.component';
+import {ProductEditComponent} from './product-edit.component';
 
 @Injectable()
-export  class ProductDetailGuard implements CanActivate {
+export class ProductDetailGuard implements CanActivate {
 
     constructor(private router: Router) {
     }
@@ -17,13 +17,14 @@ export  class ProductDetailGuard implements CanActivate {
             this.router.navigate(['/products']);
             // abort current navigation
             return false;
-        };
+        }
+        ;
         return true;
     }
 }
 
 @Injectable()
-export  class ProductEditGuard implements CanDeactivate<ProductEditComponent> {
+export class ProductEditGuard implements CanDeactivate<ProductEditComponent> {
 
     canDeactivate(component: ProductEditComponent): boolean {
         if (component.productForm.dirty) {
